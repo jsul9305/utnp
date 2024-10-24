@@ -86,6 +86,13 @@
         window.onload = function() {
             let countdownElement = document.getElementById('countdown');
 
+            // Scroll to the stored hash after reload
+            let savedHash = localStorage.getItem('scrollPosition');
+            if (savedHash) {
+                window.location.hash = savedHash;
+                localStorage.removeItem('scrollPosition');  // Clean up storage after use
+            }
+
             function updateCountdown() {
                 countdownElement.innerText = "Page will reload in " + seconds + " seconds";
                 seconds--;
@@ -97,7 +104,12 @@
 
             // Update the countdown every 1 second
             setInterval(updateCountdown, 1000);
-        }
+        };
+
+        // Save the current hash before reloading
+        window.onhashchange = function() {
+            localStorage.setItem('scrollPosition', window.location.hash);
+        };
     </script>
 </head>
 <body>
@@ -113,6 +125,7 @@
 
         <h2>UTNP Long trail 80 Runners</h2>
         <a href="#runner-8058">장동국</a>
+<a href="#runner-8065">구교정</a>
 
         <h2>UTNP Short trail 40 Runners</h2>
         <a href="#runner-5010">오완목</a>
@@ -136,6 +149,8 @@
     <h2 id="L8-runners">Long trail 80 Runners</h1>
     <h3 id="runner-8058">장동국</h2>
 <iframe src="https://smartchip.co.kr/Expectedrecord_data.asp?usedata=202450000176&nameorbibno=8058" frameborder="0"></iframe>
+<h3 id="runner-8065">구교정</h2>
+<iframe src="https://smartchip.co.kr/Expectedrecord_data.asp?usedata=202450000176&nameorbibno=8065" frameborder="0"></iframe>
 
     <h2 id="S4-runners">Short trail 40 Runners</h1>
     <h3 id="runner-5010">오완목</h2>
